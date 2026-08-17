@@ -12,14 +12,18 @@ For our frequency model, we used a Poisson GLM offset by the exposure for each p
 No. of Claims ~ Driver Age + Bonus Malus + Density + Region + Vehicle Brand
 
 The driver age, bonus malus, density, and region values were all somewhat expected. For example, it is widely known that young drivers typically have more accidents than more mature drivers. However, the significance of vehicle brands to the number of claims was surprising. To validate our models, we grouped the policies into deciles to test the accuracy of the model at both low and high expected and actual frequencies. Overall, it seems that our frequency model performs well for each decile. 
-  
+
+<img width="581" height="453" alt="image" src="https://github.com/user-attachments/assets/6d724ad4-0cc2-4c04-8786-5886d95d3cd7" />
+
 ## 5.	Severity Model
 For our severity model, we used a Gamma GLM with no exposure offset. After testing each variable’s significance, we ended with the following formula:
 
 Capped Claim Total ~ Driver Age + Region + Vehicle Brand + Vehicle Power
 
 Originally, we trained the model on uncapped claim totals. In doing so, we found that the vehicle’s gas was a strong indicator of the claim total. However, this significance disappeared when training the model using the capped claim total. Like our frequency model, we grouped the policies into deciles and graphed the expected vs actual severity. We can see that our severity model doesn’t perform nearly as well as our frequency model. This could be due to several reasons that we will go into in the limitations section.
- 
+
+<img width="574" height="439" alt="image" src="https://github.com/user-attachments/assets/1221c199-2519-40ec-877f-09d1fba73c78" />
+
 ## 6.	Pure Premium & Rating Cells
 To calculate the pure premium for each policy, we used the following formula:
 
@@ -27,6 +31,8 @@ Pure Premium = Predicted Frequency * Predicted Severity
 
 After that, we constructed some rating cells for different age groups and regions. We looked at the credibility of each rating cell. If there were very few data points in a cell, we flagged it for low credibility. We then calculated the relativities of each cell. We found that in the age relativity table, there’s a U-shape, where younger and older drivers had higher relativities while drivers between the ages of 30 and 50 had lower relativities. In our region relativity table, we found that region R94 had the highest relativity, where region R83 had the lowest relativity.
 
+<img width="386" height="116" alt="image" src="https://github.com/user-attachments/assets/e6ccae1f-f560-401c-81da-94255141ae28" />
+<img width="377" height="377" alt="image" src="https://github.com/user-attachments/assets/7dc1fe44-f7f5-4d40-b945-54399e672d27" />
 
 ## 7.	Sample Output
 To calculate the premium for three sample customers, we used the following formula:
